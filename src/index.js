@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import CelebrityJokes from './components/CelebrityJokes';
 import FoodJokes from './components/FoodJokes';
-import { Router, Route } from 'react-router';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const Root = () => {
   return (
     <div className="container">
       <Router>
-        <Route path="/" component={FoodJokes}/>
-        <Route path="/special" component={CelebrityJokes}/>
+        <div>
+          <Route path="/" component={FoodJokes}/>
+          <Route path="/special" component={CelebrityJokes}/>
+        </div>
       </Router>
     </div>
   );
