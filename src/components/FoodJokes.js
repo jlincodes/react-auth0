@@ -29,24 +29,18 @@ class FoodJokes extends Component {
         <h3 className="text-center">Chuck Norris Food Jokes</h3>
         <hr/>
 
-        { jokes.map( (joke, index) => (
-          <div className="col-sm-6" key={index}>
-            <div className="panel panel-primary">
-              <div className="panel-heading">
-                <h3 className="panel-title"><span className="btn">#{ joke.id }</span></h3>
+        { jokes.map((joke, index) => (
+              <div className="col-sm-6" key={index}>
+                <div className="panel panel-primary">
+                  <div className="panel-heading">
+                    <h3 className="panel-title"> <span className="btn">#{ joke.id }</span></h3>
+                  </div>
+                  <div className="panel-body">
+                    <p> { joke.joke } </p>
+                  </div>
+                </div>
               </div>
-              <div className="panel-body">
-                <p> { joke.joke }</p>
-              </div>
-            </div>
-          </div>
-        ))}
-
-        <div className="col-sm-12">
-          <div className="jumbotron text-center">
-            <h2>Log in to get access to celebrity jokes</h2>
-          </div>
-        </div>
+          ))}
 
         <div className="col-sm-12">
           { isLoggedIn() ?
@@ -57,6 +51,7 @@ class FoodJokes extends Component {
           }
         </div>
       </div>
+
     );
   }
 }
