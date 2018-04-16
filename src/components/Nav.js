@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { login, logout, isLoggedIn } from '../utils/AuthService';
 import '../App.css';
 
 class Nav extends Component {
@@ -10,17 +11,22 @@ class Nav extends Component {
         <div className="navbar-header">
           <Link className="navbar-brand" to="/">Chuck Norris World</Link>
         </div>
-        <ul>
+        <ul className="nav navbar-nav">
           <li>
             <Link to="/">Food Jokes</Link>
           </li>
           <li>
-            <Link to="/special">Celebrity Jokes</Link>
+            {
+             ( isLoggedIn() ) ? <Link to="/special">Celebrity Jokes</Link> :  ''
+            }
           </li>
         </ul>
-        <ul>
-          <li><button className="btn btn-info log">Log In</button></li>
-          <li><button className="butn btn-danger log">Log Out</button></li>
+        <ul className="nav navbar-nav navbar-right">
+          <li>
+           {
+             (isLoggedIn()) ? ( <button className="btn btn-danger log" onClick={() => logout()}>Log out </button> ) : ( <button className="btn btn-info log" onClick={() => login()}>Log In</button> )
+           }
+          </li>
         </ul>
       </nav>
     );
