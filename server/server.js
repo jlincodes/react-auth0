@@ -12,18 +12,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 const authCheck = jwt({
-  secret: jwks.expressJwtSecret({
+    secret: jwks.expressJwtSecret({
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
-        // YOUR-AUTH0-DOMAIN name e.g https://prosper.auth0.com
-        jwksUri: "{YOUR-AUTH0-DOMAIN}/.well-known/jwks.json"
+        jwksUri: "https://salty-storm-66055.auth0.com/.well-known/jwks.json"
     }),
-    // This is the identifier we set when we created the API
-    audience: '{YOUR-API-AUDIENCE-ATTRIBUTE}',
-    issuer: '{YOUR-AUTH0-DOMAIN}',
+    audience: 'https://reactjsauth0tutorial.com',
+    issuer: "https://salty-storm-66055.auth0.com/",
     algorithms: ['RS256']
 });
+
 
 app.get('/api/jokes/food', (req, res) => {
   let foodJokes = [
@@ -53,7 +52,7 @@ app.get('/api/jokes/food', (req, res) => {
   }
   ];
   res.json(foodJokes);
-})
+});
 
 app.get('/api/jokes/celebrity', authCheck, (req,res) => {
   let CelebrityJokes = [
@@ -83,7 +82,7 @@ app.get('/api/jokes/celebrity', authCheck, (req,res) => {
   }
   ];
   res.json(CelebrityJokes);
-})
+});
 
 app.listen(3333);
 console.log('Listening on localhost:3333');
